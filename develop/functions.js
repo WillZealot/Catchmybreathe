@@ -1,1 +1,12 @@
- curl --header "X-API-Key: 1234567890ASDFGHJK" https:"api.openaq.org/v2/locations"
+let KeyApi = "b063e961132d34721eb67544bf97f624"
+
+let pollutionUrl = "http://api.openweathermap.org/data/2.5/air_pollution?lat=28.538336&lon=-81.379234&appid="+ KeyApi;
+
+fetch(pollutionUrl)
+.then(function(response){
+    return response.json();
+})
+
+.then(function(data){
+    console.log(data);
+})
