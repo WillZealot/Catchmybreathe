@@ -1,0 +1,1 @@
+ curl --header "X-API-Key: 1234567890ASDFGHJK" https:"api.openaq.org/v2/locations"
