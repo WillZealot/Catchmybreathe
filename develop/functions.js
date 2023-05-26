@@ -10,3 +10,12 @@ fetch(pollutionUrl)
 .then(function(data){
     console.log(data);
 })
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor =>{
+    anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior : "smooth"
+        });
+    });
+});
