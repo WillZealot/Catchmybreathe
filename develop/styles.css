@@ -4,3 +4,26 @@ body{
     
 }
 
+.navbar-item img {
+    padding-right: 1rem;
+    padding-left: .5rem;
+    max-height: 2.5rem;
+}
+
+.navbar-end {
+    padding-right:2rem;;
+}
+
+.normalTitle {
+    color: #d1f2ff;
+}
+
+.boldTitle{
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.navbar {
+    min-height: 4rem;
+}
