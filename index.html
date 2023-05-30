@@ -26,7 +26,7 @@
           About Us
         </a>
   
-        <a id=details class="navbar-item">
+        <a id=details href="./details.html" class="navbar-item">
           Details
         </a>
         </div>
@@ -34,24 +34,49 @@
     </div>
   </nav>
 
+  <section class="section">
+    <article class="message is-info">
+      <div class="message-header">
+        <p>Our Mission</p>
+        <button class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">
+        Our Mission is simple. <strong>To provide clear informative details</strong>, for people who may struggle with <a>respiratory issues</a> and are worried about the cities they visit. We strive <em>to ease your mind</em>, and make an already stressfull task such as planning a vacation just a little bit easier. <strong>Go ahead and search the city you would like to visit and we will provide information on whether that city has good air quality or bad!</strong> If you want information on how we do it go ahead and click "Details" at the top!
+      </div>
+    </article>
+  </section>
+
+  <section class="section has-background-info mx-6">
+    <div>
+      <input id="userCityInput" class="input is-large" type="text" placeholder="Enter Your Vacation City">
+      <progress class="progress is-small mt-4" value="20" max="100">20%</progress>
+      <div class ="has-text-centered">
+        <button id="userCityButton" class="button is-centered is-large is-mediumwidth"><a class="has-text-black "  href = "./results.html"> Search Your Spot</a></button>
+      </div>
+    </div>
+  </section>
+
   <section id=aboutSection class="section">
     <div class="container has-text-centered">
+      <iframe id="infoVid"class="has-ratio" width="80%" height="460" src="https://www.youtube.com/embed/e6rglsLy1Ys" frameborder="0" allowfullscreen></iframe>
       <h2 id="aboutHeader" class="title">About Catch My Breathe!</h2>
-      <p id="aboutBody" class="subtitle">Improving Vacation Experiences for Individuals with Chronic Respiratory Conditions
+      <p id="aboutBody" class="subtitle"><strong>Improving Vacation Experiences for Individuals with Chronic Respiratory Conditions
       In the region of the Americas in 2019, chronic respiratory diseases accounted for 534,242 deaths. At Catch My Breathe!, we aim to enhance the quality of vacation location searches for users who have pre-existing conditions that can worsen their experience by not knowing the air quality conditions of a specific location in advance.
       Catch My Breathe! provides individuals with respiratory conditions the opportunity to verify the air quality of their desired vacation area. Users can inquire about air quality information and conditions that can be affected by contaminants such as pollution, pollen, smoke, and more. This empowers users to make informed decisions and ensure their chosen destination meets their health requirements.
-      To prevent users from missing out on their vacation experience, our application also offers recommendations of nearby cities with better, if not perfect, air quality conditions. This ensures that users can have a successful and safe vacation without compromising their health and well-being.</p>
+      To prevent users from missing out on their vacation experience, our application also offers recommendations of nearby cities with better, if not perfect, air quality conditions. This ensures that users can have a successful and safe vacation without compromising their health and well-being.</strong></p>
     </div>
   </section>
 
-  <section>
-    <div>
-      <button class="button is-centered is-large is-contentwidth">Search Your Spot</button>
-      <input class="input is-large" type="text" placeholder="Enter Your Vacation City">
+  <footer class="footer">
+    <div class="content">
+      <p>
+        <strong>CatchMyBreathe.</strong><a href="https://github.com/WillZealot/Catchmybreathe/graphs/contributors">By Francisco Gonzalez, Noah Nelson, Harrison Miner, Pablo Roman, and William Tikhonenko
+        </a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
     </div>
-  </section>
-
-  <progress class="progress is-small" value="20" max="100">20%</progress>
+  </footer>
 
   <script src="/develop/functions.js"></script>
 </body>
