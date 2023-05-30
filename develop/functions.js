@@ -19,3 +19,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor =>{
         });
     });
 });
+
+
+//Directs search to other pages according to set parameters.
+
+  function performSearch() {
+    const progressBar = document.querySelector(".progress");
+    progressBar.value = 0;
+    const interval = setInterval(function() {
+      progressBar.value += 1;
+      if (progressBar.value === progressBar.max) {
+        clearInterval(interval);
+        const searchQuery = userCityInput.value.trim();
+        if (searchQuery === "") {
+          window.location.href = "./404.html";
+        } else {
+          saveSearch(searchQuery);
+          window.location.href = "./results.html";
+        }
+      }
+    }, 20);
+  }
+  
+
+  const savedSearchQuery = localStorage.getItem("searchQuery");
+  // Saves the search to local storage
+  function saveSearch(searchQuery) {
+    if (typeof Storage !== "undefined") {
+      localStorage.setItem("searchQuery", searchQuery);
+    }
+  }
+  
+
+  //searchButton and "Enter" key actions 
+  const searchButton = document.querySelector("#userCityButton");
+  const userCityInput = document.getElementById("userCityInput");
+  
+  searchButton.addEventListener("click", performSearch);
+  userCityInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      performSearch();
+    }
+  });
