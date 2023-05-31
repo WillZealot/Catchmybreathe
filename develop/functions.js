@@ -25,7 +25,7 @@ let KeyApi = "b063e961132d34721eb67544bf97f624"
   const userCityInput = document.getElementById("userCityInput");
 
   searchButton.addEventListener("click", function(){
-    //performSearch();
+    performSearch();
     let cityInput = $("input").val();
     console.log(cityInput);
     localStorage.setItem("searchQuery", cityInput);
