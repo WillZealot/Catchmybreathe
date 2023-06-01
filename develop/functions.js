@@ -59,6 +59,9 @@ function performSearch() {
               })
               .then(function(pollutionData) {
                 console.log(pollutionData);
+                let userCityComponent = pollutionData.list[0].components.co;
+                console.log(userCityComponent);
+
 
                 // Save the geocoding data and perform the redirection
                 saveSearch(searchQuery, {
