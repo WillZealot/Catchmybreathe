@@ -12,60 +12,73 @@ function saveSearch(cityInput, geocodingData) {
 }
 // Directs search to other pages according to set parameters.
 document.addEventListener("DOMContentLoaded", function() {
- function performSearch() {
-  const progressBar = document.querySelector(".progress");
-  progressBar.value = 0;
-  const interval = setInterval(function() {
-   progressBar.value += 1;
-   if (progressBar.value === progressBar.max) {
-    clearInterval(interval);
-    const searchQuery = userCityInput.value.trim();
-    if (searchQuery === "") {
-     window.location.href = "./404.html";
-    } else {
-     let letCityInfo =
-      "https://api.openweathermap.org/geo/1.0/direct?q=" +
-      searchQuery +
-      "&limit=1&appid=" +
-      KeyApi;
-     fetch(letCityInfo)
-      .then(function(response) {
-       return response.json();
-      })
-      .then(function(data) {
-       console.log(data);
-       let searchLatEl = data[0].lat;
-       let searchLonEl = data[0].lon;
-       let pollutionUrl =
-        "https://api.openweathermap.org/data/2.5/air_pollution?lat=" +
-        searchLatEl +
-        "&lon=" +
-        searchLonEl +
-        "&appid=" +
-        KeyApi;
-       fetch(pollutionUrl)
-        .then(function(response) {
-         return response.json();
-        })
-        .then(function(pollutionData) {
-         console.log(pollutionData);
-         let userCityComponent = pollutionData.list[0].components.co;
-         console.log(userCityComponent);
-         let recentlySearched = localStorage.getItem("searchQueries", [0]);
-         $("#searchedCityUser").text(recentlySearched);
-         // Save the geocoding data and perform the redirection to results.html
-         saveSearch(searchQuery, {
-          lat: searchLatEl,
-          lon: searchLonEl,
-          pollutionData: pollutionData
-         });
-         window.location.href = "./results.html";
-        });
-      });
-    }
-   }
-  }, 20);
- }
+  function performSearch() {
+    const progressBar = document.querySelector(".progress");
+    progressBar.value = 0;
+    const interval = setInterval(function() {
+      progressBar.value += 1;
+      if (progressBar.value === progressBar.max) {
+        clearInterval(interval);
+        const searchQuery = userCityInput.value.trim();
+        if (searchQuery === "") {
+          window.location.href = "./404.html";
+        } else {
+          let capitalizedSearchQuery = searchQuery
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
+          let letCityInfo =
+            "https://api.openweathermap.org/geo/1.0/direct?q=" +
+            searchQuery +
+            "&limit=1&appid=" +
+            KeyApi;
+
+          fetch(letCityInfo)
+            .then(function(response) {
+              return response.json();
+            })
+            .then(function(data) {
+              console.log(data);
+
+              let searchLatEl = data[0].lat;
+              let searchLonEl = data[0].lon;
+
+              let pollutionUrl =
+                "https://api.openweathermap.org/data/2.5/air_pollution?lat=" +
+                searchLatEl +
+                "&lon=" +
+                searchLonEl +
+                "&appid=" +
+                KeyApi;
+
+              fetch(pollutionUrl)
+                .then(function(response) {
+                  return response.json();
+                })
+                .then(function(pollutionData) {
+                  console.log(pollutionData);
+                  let userCityComponent = pollutionData.list[0].components.co;
+                  console.log(userCityComponent);
+                  let recentlySearched = localStorage.getItem("searchQueries", [0]);
+                  $("#searchedCityUser").text(recentlySearched);
+
+                  // Save the geocoding data and perform the redirection to results.html
+                  saveSearch(capitalizedSearchQuery, {
+                    lat: searchLatEl,
+                    lon: searchLonEl,
+                    pollutionData: pollutionData
+                  });
+
+                  window.location.href = "./results.html";
+                });
+            });
+        }
+      }
+    }, 20);
+  }
+
+
  const searchButton = document.querySelector("#userCityButton");
  // Check if the search button element exists
  if (searchButton) {
