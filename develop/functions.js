@@ -58,10 +58,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then(function(pollutionData) {
                   console.log(pollutionData);
-                  let userCityComponent = pollutionData.list[0].components.co;
-                  console.log(userCityComponent);
+                  //Top Results Card City Info is here !
                   let recentlySearched = localStorage.getItem("searchQueries", [0]);
                   $("#searchedCityUser").text(recentlySearched);
+                  //Bottom Results Card Info Here !
+                  let userCityComponent = JSON.stringify([pollutionData.list[0].components.no2]);
+                  console.log(userCityComponent);
+                  $("airQ span").text(userCityComponent);
+                  
 
                   // Save the geocoding data and perform the redirection to results.html
                   saveSearch(capitalizedSearchQuery, {
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     pollutionData: pollutionData
                   });
 
-                  window.location.href = "./results.html";
+                 window.location.href = "./results.html";
                 });
             });
         }
