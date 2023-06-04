@@ -16,13 +16,11 @@ To get this information, we used two API keys, The first one being "https://api.
 Ultimately, this app is made to help those seek and find the safe and healthly life they deserve. 
 
 
-Deployment Link: https://willzealot.github.io/Catchmybreathe/
+#### Deployment Link: https://willzealot.github.io/Catchmybreathe/
 
 
 #### links
 https://openweathermap.org/api/air-pollution
-#### Deployment Link:
- https://willzealot.hithub.io/Catchmybreathe/
 
 ### Credits
 Noah, Fransisco, Pablo, Harrison, William.
