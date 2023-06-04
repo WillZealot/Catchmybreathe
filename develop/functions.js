@@ -15,6 +15,11 @@ function saveSearch(cityInput, geocodingData) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+
+  //let airQElement = document.getElementById("airQ");
+  //let no2Level = JSON.stringify(localStorage.getItem("pollutionData"));
+  //airQElement.textContent = "NO2 Level: " + no2Level;
+
   // Display the first index of searchQueries on the card
   const searchedCityUser = document.getElementById("searchedCityUser");
   const searchQueries = JSON.parse(localStorage.getItem("searchQueries"));
@@ -92,16 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
                   console.log(pollutionData);
                   let pollutionEle = pollutionData.list[0].components.co;
                   console.log(pollutionEle);
-/// right here is where the change should take place but its just not changing an im losing my mind/WILLIAM TIKHONEKO
-                      if (pollutionEle < 70) {
-                      emojiResult.attr("src", "./develop/images/Good Conditions.png");
-                      } else if (pollutionEle > 150) {
-                      emojiResult.attr("src", "./develop/images/Bad Conditions.png");
-                      } else {
-                      emojiResult.attr("src", "./develop/images/Ok Conditions.png");
-                      }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   let searchQueries = JSON.parse(localStorage.getItem("searchQueries")) || [];
                   searchQueries.unshift(capitalizedSearchQuery);
                   searchQueries = searchQueries.slice(0, 5); // Limit the number of stored queries
