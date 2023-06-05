@@ -1,31 +1,34 @@
+//API key
 let KeyApi = "b063e961132d34721eb67544bf97f624";
- // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
 
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
+// Functions to open and close a modal
+function openModal($el) {
+  $el.classList.add('is-active');
+}
 
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
+function closeModal($el) {
+  $el.classList.remove('is-active');
+}
+
+// Add a click event on buttons to open a specific modal
+(document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+  const modal = $trigger.dataset.target;
+  const $target = document.getElementById(modal);
+
+  $trigger.addEventListener('click', () => {
+    openModal($target);
   });
+});
 
-  // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
+// Add a click event on various child elements to close the parent modal
+(document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+  const $target = $close.closest('.modal');
 
-    $close.addEventListener('click', () => {
-      closeModal($target);
-    });
+  $close.addEventListener('click', () => {
+    closeModal($target);
   });
-  
+});
+
 
 // Define the saveSearch function
 function saveSearch(cityInput, geocodingData) {
@@ -38,10 +41,13 @@ function saveSearch(cityInput, geocodingData) {
   localStorage.setItem("searchQueries", JSON.stringify(searchQueries));
   localStorage.setItem(cityInput, JSON.stringify(geocodingData));
 }
+
 document.addEventListener("DOMContentLoaded", function () {
+
   // Display the first index of searchQueries on the card
   const searchedCityUser = document.getElementById("searchedCityUser");
   const searchQueries = JSON.parse(localStorage.getItem("searchQueries"));
+
   if (searchedCityUser && searchQueries && searchQueries.length > 0) {
     const firstSearchQuery = searchQueries[0];
     const capitalizedCity =
@@ -49,7 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
     searchedCityUser.textContent = capitalizedCity;
     setAirDataEmoji(capitalizedCity);
   }
+
   const searchButton = document.querySelector("#userCityButton");
+
   // Check if the search button element exists
   if (searchButton) {
     searchButton.addEventListener("click", function () {
@@ -66,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
   // Mobile menu toggle
   const burgerIcon = document.querySelector("#burger");
   const navbarMenu = document.querySelector("#nav-links");
@@ -74,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
       navbarMenu.classList.toggle("is-active");
     });
   }
+
   function performSearch(cityInput) {
     const progressBar = document.querySelector(".progress");
     progressBar.value = 0;
@@ -83,8 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (progressBar.value === progressBar.max) {
         clearInterval(interval);
         if (cityInput === "") {
-          openModal(document.getElementById("modal-js-example")); // Replace "modalId" with the actual ID of your modal element
+     // Replace "modalId" with the actual ID of your modal element
+          openModal(document.getElementById("modal-js-example")); 
         } else {
+          //Capitalizes first letter of all words
           let capitalizedSearchQuery = cityInput
             .split(" ")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -105,9 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
               console.log(data);
 
               if (typeof data[0]?.lat === "undefined") {
-                openModal(document.getElementById("modal-js-example")); // Replace "modalId" with the actual ID of your modal element
-              return; // Stop execution here if lat is undefined
+                openModal(document.getElementById("modal-js-example")); 
+                return; 
+                // Stop execution here if lat is undefined
               }
+              //Location Search with pollution data
               let searchLatEl = data[0].lat;
               let searchLonEl = data[0].lon;
               let pollutionUrl =
@@ -128,11 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
                   console.log(pollutionData);
                   let pollutionEle = pollutionData.list[0].components.co;
                   console.log(pollutionEle);
-           
+
                   let searchQueries =
                     JSON.parse(localStorage.getItem("searchQueries")) || [];
                   searchQueries.unshift(capitalizedSearchQuery);
-                  searchQueries = searchQueries.slice(0, 5); // Limit the number of stored queries
+                  // Limit the number of stored queries for display
+                  searchQueries = searchQueries.slice(0, 5); 
                   localStorage.setItem(
                     "searchQueries",
                     JSON.stringify(searchQueries)
@@ -152,6 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 20);
   }
+
+  //Locally saved emoji display depending on air quality conditions
   function setAirDataEmoji(city) {
     console.log(city);
     let weatherData = JSON.parse(localStorage.getItem(city));
@@ -162,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(pollutionEle);
     let emojiResult = document.querySelector("#conditionsEmoji");
     let airQElement = document.querySelector("#airQ");
-  
+
     if (pollutionEle < 70) {
       emojiResult.setAttribute("src", "./develop/images/Good Conditions.png");
       airQElement.textContent = "Good";
@@ -175,43 +192,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
-  //Francisco's Code
-
+  // Display recent searches when the search input field is clicked
   const userCityInput = document.querySelector("#userCityInput");
   const searchList = document.querySelector("#searchList");
-  
-  // Display recent searches when the search bar is clicked
-  if (userCityInput) {
-    userCityInput.addEventListener("click", function () {
-      const searchQueries = JSON.parse(localStorage.getItem("searchQueries"));
-      if (searchQueries && searchQueries.length > 0) {
-        const searchList = document.getElementById("searchList");
-        searchList.innerHTML = "";
-        const displayedQueries = [];
-        searchQueries.forEach(function (query) {
-          if (!displayedQueries.includes(query)) {
-            const listItem = document.createElement("li");
-            listItem.textContent = query;
-            listItem.classList.add("recent-search-item");
-            searchList.appendChild(listItem);
-            displayedQueries.push(query);
 
-            
-          }else{
-            return;
-          }
-        });
+  function displayRecentSearches() {
+    // Clear previous search items
+    searchList.innerHTML = ""; 
+    const searchQueries = JSON.parse(localStorage.getItem("searchQueries"));
+    if (searchQueries && searchQueries.length > 0) {
+      const displayedQueries = [];
+      searchQueries.forEach(function (query) {
+        if (!displayedQueries.includes(query)) {
+          const listItem = document.createElement("li");
+          listItem.textContent = query;
+          listItem.classList.add("recent-search-item");
+          searchList.appendChild(listItem);
+          displayedQueries.push(query);
+        }
+      });
+    }
+  }
+
+  // Add click event listener to recent search items
+  if (searchList) {
+    searchList.addEventListener("click", function (event) {
+      if (event.target && event.target.matches(".recent-search-item")) {
+        const clickedQuery = event.target.textContent;
+        userCityInput.value = clickedQuery;
+        performSearch(userCityInput.value);
       }
     });
   }
-  
-  // Add click event listener to recent search items
-  searchList.addEventListener("click", function (event) {
-    if (event.target && event.target.matches(".recent-search-item")) {
-      const clickedQuery = event.target.textContent;
-      userCityInput.value = clickedQuery;
-      performSearch(userCityInput.value);
-    }
-  });
+
+  // Add event listener to clear recent searches button
+  const clearSearchesButton = document.querySelector("#clearSearchesButton");
+  if (clearSearchesButton) {
+    clearSearchesButton.addEventListener("click", function () {
+      localStorage.removeItem("searchQueries");
+      searchList.innerHTML = "";
+    });
+  }
+
+  // Event listener for userCityInput click event
+  if (userCityInput) {
+    userCityInput.addEventListener("click", function () {
+      displayRecentSearches();
+    });
+  }
 });

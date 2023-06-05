@@ -10,12 +10,14 @@
 </head>
 <body>
 <main>
+<!--Navigation-->
   <nav id=navbar class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item">
         <img id=logo src='./Logo/White-Logo.png' >
         <h4 id=websiteName class="title is-4"><span class="normalTitle">CATCH MY </span><span class="boldTitle">BREATH!</span></h4>
       </a>
+<!--Navigation media query for menu-->
       <a class="navbar-burger" id="burger">
         <span></span>
         <span></span>
@@ -35,6 +37,7 @@
       </div>
     </div>
   </nav>
+        <!--City name card-->
   <div style="display: flex; justify-content: center; align-items: center; height: 550px; text-align: center;">
     <div style="display: flex; flex-direction: column; width: 700px;">
       <div class="card" style="margin-bottom: 10px;">
@@ -44,6 +47,7 @@
           </div>
         </div>
       </div>
+      <!--Air quality card-->
       <div class="card" style="margin-bottom: 10px;">
         <div class="card-content" style="padding: 20px;">
           <div class="content" style="font-size: 100px;">
@@ -52,16 +56,19 @@
         </div>
       </div>
     </div>
+    <!--Emoji display due to condition-->
     <figure class="image" style="margin-left: 20px;">
       <img id="conditionsEmoji" alt="Air Conditions" style="width: 400px;">
     </figure>
   </div>
   <div class="card">
     <footer class="card-footer">
-      <a href="https://www.airbnb.com/a/stays/Canberra--Australian-Capital-Territory--Australia?mlamenities=true&c=.pi0.pk475441696_61832013358&localized_ghost=true&gclid=Cj0KCQjw7PCjBhDwARIsANo7CglKJgOhsuBuyRG2oVE5_aDd4D1Ua_kLzG_b99WBxVyC4M76hXAC0f8aAh3fEALw_wcB" class="card-footer-item">Canberra, Australia</a>
-      <a style="background-color: rgb(244, 113, 116); color:black" href="https://www.airbnb.com/" class="card-footer-item"><strong>Book Your City!</strong></a>
-      <a href="https://www.airbnb.com/a/stays/Helsinki--Finland?mlamenities=true&c=.pi0.pk475441696_61832019598&localized_ghost=true&gclid=Cj0KCQjw7PCjBhDwARIsANo7CglfIYU6eYO_bZ5mHxR31z1j2ocbjQpQxbcp2PE6_6h30yY0woGP_HEaArHAEALw_wcB" class="card-footer-item">Helsinki, Finland</a>
+      <a style="background: rgba(255, 255, 255, 0.5);" href="https://www.airbnb.com/" class="card-footer-item">
+        <img src="./develop/images/Airbnb-Logo.png" alt="ABNB Icon" class="Airbnb_Logo">
+        <strong>Book Your City!</strong>
+      </a>
     </footer>
+    
   </div>
   
   <footer class="footer">
