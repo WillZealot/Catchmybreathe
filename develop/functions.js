@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (pollutionEle < 70) {
       emojiResult.setAttribute("src", "./develop/images/Good Conditions.png");
       airQElement.textContent = "Good";
-    } else if (pollutionEle > 150) {
+    } else if (pollutionEle > 120) {
       emojiResult.setAttribute("src", "./develop/images/Bad Conditions.png");
       airQElement.textContent = "Bad";
     } else {
