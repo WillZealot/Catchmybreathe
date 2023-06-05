@@ -1,8 +1,10 @@
+/*Body styles to contrast Bulma*/
 body, .hero-body{
     background-image: url(./images/background.jpg);
     background-attachment: fixed;
     
 }
+
 
 .navbar-item img {
     padding-right: 1rem;
@@ -41,6 +43,7 @@ body, .hero-body{
     background-color: rgba(255, 255, 255, .70);
   }
 
+  /*Searched queries*/
   #searchList li{
     font-weight: 500;
   }
@@ -49,6 +52,15 @@ body, .hero-body{
     cursor: pointer;
     opacity:0.8;
     color: black;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
   }
 
-  
+  /*Airbnb links*/
+  .Airbnb_Logo {
+    width: 60px;
+}
+
+.card-footer-item:hover{
+    color: black;
+    font-size: large;
+}
