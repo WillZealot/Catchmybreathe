@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (searchButton) {
     searchButton.addEventListener("click", function () {
       let cityInput = document.querySelector("input").value;
-      console.log(cityInput);
       performSearch(cityInput);
     });
   }
@@ -114,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
               return response.json();
             })
             .then(function (data) {
-              console.log(data);
 
               if (typeof data[0]?.lat === "undefined") {
                 openModal(document.getElementById("modal-js-example")); 
@@ -139,9 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   return response.json();
                 })
                 .then(function (pollutionData) {
-                  console.log(pollutionData);
                   let pollutionEle = pollutionData.list[0].components.co;
-                  console.log(pollutionEle);
 
                   let searchQueries =
                     JSON.parse(localStorage.getItem("searchQueries")) || [];
@@ -170,13 +166,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Locally saved emoji display depending on air quality conditions
   function setAirDataEmoji(city) {
-    console.log(city);
     let weatherData = JSON.parse(localStorage.getItem(city));
-    console.log(weatherData);
     let pollutionData = weatherData.pollutionData;
-    console.log(pollutionData);
     let pollutionEle = pollutionData.list[0].components.o3;
-    console.log(pollutionEle);
     let emojiResult = document.querySelector("#conditionsEmoji");
     let airQElement = document.querySelector("#airQ");
 
