@@ -182,28 +182,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchList = document.querySelector("#searchList");
   
   // Display recent searches when the search bar is clicked
-  userCityInput.addEventListener("click", function () {
-    const searchQueries = JSON.parse(localStorage.getItem("searchQueries"));
-    if (searchQueries && searchQueries.length > 0) {
-      searchList.innerHTML = "";
-      const displayedQueries = []; // Array to store displayed queries
-      searchQueries.forEach(function (query) {
-        if (!displayedQueries.includes(query)) {
-          const listItem = document.createElement("li");
-          listItem.textContent = query;
-          listItem.classList.add("recent-search-item");
-          searchList.appendChild(listItem);
-          displayedQueries.push(query); // Add query to displayed queries
-        }
-      });
-    }
-  });
+  if (userCityInput) {
+    userCityInput.addEventListener("click", function () {
+      const searchQueries = JSON.parse(localStorage.getItem("searchQueries"));
+      if (searchQueries && searchQueries.length > 0) {
+        const searchList = document.getElementById("searchList");
+        searchList.innerHTML = "";
+        const displayedQueries = [];
+        searchQueries.forEach(function (query) {
+          if (!displayedQueries.includes(query)) {
+            const listItem = document.createElement("li");
+            listItem.textContent = query;
+            listItem.classList.add("recent-search-item");
+            searchList.appendChild(listItem);
+            displayedQueries.push(query);
+
+            
+          }else{
+            return;
+          }
+        });
+      }
+    });
+  }
   
   // Add click event listener to recent search items
   searchList.addEventListener("click", function (event) {
     if (event.target && event.target.matches(".recent-search-item")) {
       const clickedQuery = event.target.textContent;
       userCityInput.value = clickedQuery;
+      performSearch(userCityInput.value);
     }
   });
 });
