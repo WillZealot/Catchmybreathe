@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .split(" ")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
-            let letCityInfo =
+          let letCityInfo =
             "https://api.openweathermap.org/geo/1.0/direct?q=" +
             cityInput +
             "&limit=1&appid=" +
@@ -87,8 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(function (pollutionData) {
                   console.log(pollutionData);
-                  let pollutionEle = pollutionData.list[0].components.o3;
+                  let pollutionEle = pollutionData.list[0].components.co;
                   console.log(pollutionEle);
+           
                   let searchQueries =
                     JSON.parse(localStorage.getItem("searchQueries")) || [];
                   searchQueries.unshift(capitalizedSearchQuery);
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   });
                   // Redirect to results.html
                   window.location.href = "./results.html";
+                  console.log("KILL ME");
                   getAirData();
                 });
             });
@@ -121,12 +123,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let pollutionEle = pollutionData.list[0].components.o3;
     console.log(pollutionEle);
     let emojiResult = document.querySelector("#conditionsEmoji");
+    let airQElement = document.querySelector("#airQ");
+  
     if (pollutionEle < 70) {
       emojiResult.setAttribute("src", "./develop/images/Good Conditions.png");
-    } else if (pollutionEle > 125) {
+      airQElement.textContent = "Good";
+    } else if (pollutionEle > 150) {
       emojiResult.setAttribute("src", "./develop/images/Bad Conditions.png");
+      airQElement.textContent = "Bad";
     } else {
-      emojiResult.setAttribute("src", "./develop/images/Ok Conditions.png");;
+      emojiResult.setAttribute("src", "./develop/images/Ok Conditions.png");
+      airQElement.textContent = "Moderate";
     }
   }
 });
+
