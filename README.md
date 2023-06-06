@@ -25,7 +25,7 @@ First search the name of the city that you desire to vacation in in the search b
 
 ![City Search Box](images/Search-City.png)
 
-Once a city has been input, a new screen will emerge showing the CO2 levels!
+Once a city has been input, a new screen will emerge showing the o3 levels!
 ![Results](images/City%20Search%20Result.png)
 #### How we do It
 To get this information, we used two API keys, The first one being "https://api.openweathermap.org/data/2.5/air_pollution?lat=". This one is used to measure the CO2 levels in the air. "https://api.openweathermap.org/geo/1.0/direct?q=" this one is used to grab and display information about the desired vacation destination.
