@@ -1,4 +1,4 @@
-# Catchmybreathe
+# Catchmybreath
 
 Welcome to "Catch My Breath", a versitile application that is designed to help anyone find a vacation spot with good air quality to match you health parameters and location desires.
 
